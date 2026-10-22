@@ -19,7 +19,7 @@ export const Header = ({ onAbrirArea, onVoltarSite, naAreaAluno, onSair }) => {
           <span className="w-10 h-10 grid place-items-center italic border border-solid border-current rounded-full font-serif text-sm mr-2">
             BN
           </span>
-          <span className="font-semibold hidden sm:inline">
+          <span className="font-semibold text-sm md:text-xs lg:text-base">
             Bianca Nishikawa
           </span>
         </div>
@@ -75,7 +75,18 @@ export const Header = ({ onAbrirArea, onVoltarSite, naAreaAluno, onSair }) => {
               e.preventDefault();
               onAbrirArea();
             }}
-            className="hover:text-gray-500 transition"
+            className="text-xs md:text-sm  hover:text-gray-500 transition "
+          >
+            Já sou aluno(a)
+          </button>
+        </div>
+        <div className="flex justify-center md:hidden">
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              onAbrirArea();
+            }}
+            className="text-sm border border-black hover:border-red-800 hover:text-red-800 px-4 py-2 transition "
           >
             Já sou aluno(a)
           </button>

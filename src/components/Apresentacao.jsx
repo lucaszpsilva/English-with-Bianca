@@ -8,7 +8,7 @@ export const Apresentacao = () => {
       id="inicio"
       className="flex flex-col md:flex-row justify-between items-center"
     >
-      <div className="flex flex-col px-4 md:ml-16 my-auto items-center text-center md:text-left w-full md:w-auto">
+      <div className="flex flex-col px-4 md:ml-16 mt-10 md:my-auto items-center text-center md:text-left w-full md:w-auto">
         <div className="flex items-center justify-center md:justify-start">
           <span className="w-10 h-0.5 bg-red-800 mr-3"></span>
           <span className="uppercase tracking-widest">

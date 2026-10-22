@@ -13,18 +13,6 @@ export const Feedback = () => {
         <div className="flex flex-wrap mt-10 gap-4 md:gap-14 justify-center items-center">
           <div className="flex border shadow-lg px-6 md:px-14 py-3 md:py-5">
             <span className="border my-auto rounded-full p-1 mr-4 text-red-800 border-black">
-              JG
-            </span>
-            <p>
-              Uma didática muito boa, paciente e muito atenciosa, sempre
-              identificando os pontos q possuo mais dificuldade e ajudando a
-              melhorá-los. Uma didática muito boa, paciente e muito atenciosa,
-              sempre identificando os pontos q possuo mais dificuldade e
-              ajudando a melhorá-los.
-            </p>
-          </div>
-          <div className="flex border shadow-lg px-6 md:px-14 py-3 md:py-5">
-            <span className="border my-auto rounded-full p-1 mr-4 text-red-800 border-black">
               TW
             </span>
             <p>
@@ -32,6 +20,16 @@ export const Feedback = () => {
               confortável no processo de aprendizagem e através disso conseguiu
               identificar minhas dificuldades e personalizou as aulas conforme
               as metodologias que eram mais aderente para meu aprendizado
+            </p>
+          </div>
+          <div className="flex border shadow-lg px-6 md:px-14 py-3 md:py-5">
+            <span className="border my-auto rounded-full p-1 mr-4 text-red-800 border-black">
+              JG
+            </span>
+            <p>
+              Uma didática muito boa, paciente e muito atenciosa, sempre
+              identificando os pontos q possuo mais dificuldade e ajudando a
+              melhorá-los.
             </p>
           </div>
           <div className="flex border shadow-lg px-6 md:px-14 py-3 md:py-5">
