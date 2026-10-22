@@ -19,7 +19,7 @@ export const Header = ({ onAbrirArea, onVoltarSite, naAreaAluno, onSair }) => {
           <span className="w-10 h-10 grid place-items-center italic border border-solid border-current rounded-full font-serif text-sm mr-2">
             BN
           </span>
-          <span className="font-semibold text-sm md:text-xs lg:text-base">
+          <span className="hidden md:inline font-semibold text-sm md:text-xs lg:text-base">
             Bianca Nishikawa
           </span>
         </div>
