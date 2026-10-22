@@ -69,6 +69,9 @@ export const Card = () => {
               <strong>Entre em contato</strong> - Consulte valores, horários
               disponíveis e a modalidade ideal para você.
             </span>
+            <span className="flex font-bold italic font-mono justify-center mt-2">
+              A partir de: R$ 190
+            </span>
           </div>
         </div>
       </div>

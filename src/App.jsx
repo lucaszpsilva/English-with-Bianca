@@ -6,19 +6,37 @@ import { Sobre } from "./components/Sobre";
 import { Feedback } from "./components/Feedback";
 import { Card } from "./components/Card";
 import { Footer } from "./components/Footer";
+import { useState } from "react";
+import { AreaAluno } from "./components/AreaAluno";
 
 export const App = () => {
+  const [areaAluno, setAreaAluno] = useState(false);
+
+  const sairDaAreaAluno = () => {
+    setAreaAluno(false);
+  };
+
   return (
     <>
-      <Header />
+      <Header
+        naAreaAluno={areaAluno}
+        onAbrirArea={() => setAreaAluno(true)}
+        onVoltarSite={() => setAreaAluno(false)}
+      />
       <main>
-        <Apresentacao />
-        <Metodo />
-        <Curso />
-        <Sobre />
-        <Feedback />
-        <Card />
-        <Footer />
+        {areaAluno ? (
+          <AreaAluno onSair={sairDaAreaAluno} />
+        ) : (
+          <>
+            <Apresentacao />
+            <Metodo />
+            <Curso />
+            <Sobre />
+            <Feedback />
+            <Card />
+            <Footer />
+          </>
+        )}
       </main>
     </>
   );
