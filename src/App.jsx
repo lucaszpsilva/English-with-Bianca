@@ -1,43 +1,20 @@
-import { Apresentacao } from "./components/Apresentacao";
-import { Metodo } from "./components/Metodo";
-import { Header } from "./components/Header";
-import { Curso } from "./components/Curso";
-import { Sobre } from "./components/Sobre";
-import { Feedback } from "./components/Feedback";
-import { Card } from "./components/Card";
-import { Footer } from "./components/Footer";
-import { useState } from "react";
-import { AreaAluno } from "./components/AreaAluno";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { SitePortugues } from "./pages/SitePortugues";
+import { SiteIngles } from "./pages/SiteIngles";
 
 export const App = () => {
-  const [areaAluno, setAreaAluno] = useState(false);
-
-  const sairDaAreaAluno = () => {
-    setAreaAluno(false);
-  };
-
   return (
-    <>
-      <Header
-        naAreaAluno={areaAluno}
-        onAbrirArea={() => setAreaAluno(true)}
-        onVoltarSite={() => setAreaAluno(false)}
-      />
-      <main>
-        {areaAluno ? (
-          <AreaAluno onSair={sairDaAreaAluno} />
-        ) : (
-          <>
-            <Apresentacao />
-            <Metodo />
-            <Curso />
-            <Sobre />
-            <Feedback />
-            <Card />
-            <Footer />
-          </>
-        )}
-      </main>
-    </>
+    <BrowserRouter>
+      <Routes>
+        {/* Rota principal: Site em Português */}
+        <Route path="/" element={<SitePortugues />} />
+
+        {/* Rota do site em Inglês */}
+        <Route path="/en" element={<SiteIngles />} />
+
+        {/* Se digitar qualquer coisa errada, volta pro início */}
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </BrowserRouter>
   );
 };

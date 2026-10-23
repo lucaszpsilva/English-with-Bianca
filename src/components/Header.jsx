@@ -1,14 +1,12 @@
-import { Comecar } from "./Comecar";
+import { Link } from "react-router-dom";
 
-export const Header = ({ onAbrirArea, onVoltarSite, naAreaAluno, onSair }) => {
+export const Header = () => {
   return (
     <header className="py-4 border-b border-b-gray-400">
       <nav className="flex items-center justify-between px-4 md:px-10">
         <div
           className="flex items-center cursor-pointer"
-          onClick={(e) => {
-            e.preventDefault();
-            onVoltarSite();
+          onClick={() => {
             setTimeout(() => {
               document
                 .getElementById("inicio")
@@ -27,9 +25,7 @@ export const Header = ({ onAbrirArea, onVoltarSite, naAreaAluno, onSair }) => {
         <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 gap-6 text-sm">
           <a
             href="#metodo"
-            onClick={(e) => {
-              e.preventDefault();
-              onVoltarSite();
+            onClick={() => {
               setTimeout(() => {
                 document
                   .getElementById("metodo")
@@ -42,9 +38,7 @@ export const Header = ({ onAbrirArea, onVoltarSite, naAreaAluno, onSair }) => {
           </a>
           <a
             href="#curso"
-            onClick={(e) => {
-              e.preventDefault();
-              onVoltarSite();
+            onClick={() => {
               setTimeout(() => {
                 document
                   .getElementById("curso")
@@ -57,9 +51,7 @@ export const Header = ({ onAbrirArea, onVoltarSite, naAreaAluno, onSair }) => {
           </a>
           <a
             href="#sobre"
-            onClick={(e) => {
-              e.preventDefault();
-              onVoltarSite();
+            onClick={() => {
               setTimeout(() => {
                 document
                   .getElementById("sobre")
@@ -71,10 +63,7 @@ export const Header = ({ onAbrirArea, onVoltarSite, naAreaAluno, onSair }) => {
             Sobre mim
           </a>
           <button
-            onClick={(e) => {
-              e.preventDefault();
-              onAbrirArea();
-            }}
+            onClick={() => {}}
             className="text-xs md:text-sm  hover:text-gray-500 transition "
           >
             Já sou aluno(a)
@@ -82,31 +71,19 @@ export const Header = ({ onAbrirArea, onVoltarSite, naAreaAluno, onSair }) => {
         </div>
         <div className="flex justify-center md:hidden">
           <button
-            onClick={(e) => {
-              e.preventDefault();
-              onAbrirArea();
-            }}
+            onClick={() => {}}
             className="text-sm border border-black hover:border-red-800 hover:text-red-800 px-4 py-2 transition "
           >
             Já sou aluno(a)
           </button>
         </div>
-        {naAreaAluno ? (
-          <button
-            onClick={() => {
-              localStorage.removeItem("alunoLogado");
-              onSair();
-            }}
-            className="bg-red-600 hover:bg-red-800 transition-transform duration-300 hover:scale-[1.01] text-xs md:text-sm px-4 py-3 text-white"
-          >
-            Sair da Conta
-          </button>
-        ) : (
-          <Comecar
-            className="bg-gray-600 hover:bg-gray-700 text-xs md:text-sm px-4 py-3 text-white"
-            text="Quero começar"
-          />
-        )}
+
+        <Link
+          to="/en"
+          className="bg-gray-600 hover:bg-gray-700 text-xs md:text-sm px-6 py-3 text-white"
+        >
+          English
+        </Link>
       </nav>
     </header>
   );

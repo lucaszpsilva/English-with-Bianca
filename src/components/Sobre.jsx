@@ -31,14 +31,15 @@ export const Sobre = () => {
               Hi, eu sou a <em className="text-red-800">Bianca.</em>
             </h2>
             <p className="mt-4 text-lg">
-              Professora, apaixonada por comunicação e pela liberdade que um
-              novo idioma pode trazer.
+              Apaixonada por comunicação e pela liberdade que um novo idioma
+              pode trazer.
             </p>
 
             <p className="mt-4 text-gray-400">
-              Depois de anos em contato com o inglês, percebi que o problema
-              nunca foi falta de capacidade. Era excesso de cobrança, métodos
-              engessados e pouca conexão com a vida real.
+              Após quase dois anos morando na Irlanda e tendo contato diário com
+              o inglês, percebi que o problema nunca foi falta de capacidade.
+              Era excesso de cobrança, métodos engessados e pouca conexão com a
+              vida real.
             </p>
             <p className="mt-4 text-gray-400">
               Por isso criei uma forma mais humana de aprender: com acolhimento,
