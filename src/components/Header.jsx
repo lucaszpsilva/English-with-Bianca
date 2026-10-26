@@ -62,12 +62,12 @@ export const Header = () => {
           >
             Sobre mim
           </a>
-          <button
-            onClick={() => {}}
+          <Link
+            to="/login"
             className="text-xs md:text-sm  hover:text-gray-500 transition "
           >
             Já sou aluno(a)
-          </button>
+          </Link>
         </div>
         <div className="flex justify-center md:hidden">
           <button

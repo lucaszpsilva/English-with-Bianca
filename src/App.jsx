@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { SitePortugues } from "./pages/SitePortugues";
 import { SiteIngles } from "./pages/SiteIngles";
+import { LoginAluno } from "./components/LoginAluno";
+import { AreaAluno } from "./components/AreaAluno";
 
 export const App = () => {
   return (
@@ -11,6 +13,12 @@ export const App = () => {
 
         {/* Rota do site em Inglês */}
         <Route path="/en" element={<SiteIngles />} />
+
+        {/* Rota login aluno */}
+        <Route path="/login" element={<LoginAluno />} />
+
+        {/* Rota Area do aluno */}
+        <Route path="/area-do-aluno" element={<AreaAluno />} />
 
         {/* Se digitar qualquer coisa errada, volta pro início */}
         <Route path="*" element={<Navigate to="/" />} />
