@@ -193,7 +193,7 @@ export function EnglishClub() {
                       >
                         <CardAula aula={aula} />
                       </div>
-                    ))}
+                    ))} 
                   </div>
                 </div>
               </div>
