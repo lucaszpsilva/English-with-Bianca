@@ -70,12 +70,12 @@ export const Header = () => {
           </Link>
         </div>
         <div className="flex justify-center md:hidden">
-          <button
-            onClick={() => {}}
+          <Link
+            to="/login"
             className="text-sm border border-black hover:border-red-800 hover:text-red-800 px-4 py-2 transition "
           >
             Já sou aluno(a)
-          </button>
+          </Link>
         </div>
 
         <Link
