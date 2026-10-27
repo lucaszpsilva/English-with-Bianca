@@ -1,98 +1,67 @@
-import { useEffect, useState } from "react";
-import { client } from "../lib/sanity";
+import { Link } from "react-router-dom";
+import challenge from "../../public/challenge.png";
+import englishClub from "../../public/EnglishClub.png";
 
-export function AreaAluno() {
-  const [aulas, setAulas] = useState([]);
-  const [carregando, setCarregando] = useState(true);
-
-  useEffect(() => {
-    // Query do Sanity: Busca todos os documentos do tipo "aula"
-    // e "resolve" os links do PDF e da Imagem
-    const query = `*[_type == "aula"] | order(_createdAt desc) {
-      _id,
-      titulo,
-      "slug": slug.current,
-      "pdfUrl": pdf.asset->url,
-      "capaUrl": capa.asset->url
-    }`;
-
-    client
-      .fetch(query)
-      .then((data) => {
-        setAulas(data);
-        setCarregando(false);
-      })
-      .catch((error) => {
-        console.error("Erro ao buscar aulas:", error);
-        setCarregando(false);
-      });
-  }, []);
-
-  if (carregando) {
-    return <div className="p-10 text-center">Carregando aulas...</div>;
-  }
-
+export const AreaAluno = () => {
   return (
-    <div className="w-full max-w-6xl mx-auto p-6 mt-10">
-      <div className="mb-10 text-center">
-        <h1 className="text-3xl font-bold text-gray-800">Área do Aluno</h1>
-        <p className="text-gray-600 mt-2">
-          Acesse seus materiais e continue evoluindo.
-        </p>
+    <main className="bg-[#f5e9db] min-h-screen pb-12 flex flex-col">
+      <div className="flex flex-col items-center pt-2 md:pt-4 justify-center mb-4 md:mb-6 px-4 text-center">
+        <h2 className="text-4xl md:text-6xl font-serif italic font-bold text-gray-800">
+          Área do Aluno
+        </h2>
+        <h3 className="text-xl md:text-3xl font-serif italic mt-4 text-gray-600">
+          Acesse
+        </h3>
       </div>
 
-      {aulas.length === 0 ? (
-        <p className="text-center text-gray-500">
-          Nenhuma aula publicada ainda.
-        </p>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {aulas.map((aula) => (
-            <div
-              key={aula._id}
-              className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 flex flex-col"
-            >
-              {/* Imagem de Capa */}
-              {aula.capaUrl ? (
-                <img
-                  src={aula.capaUrl}
-                  alt={aula.titulo}
-                  className="w-full h-48 object-cover"
-                />
-              ) : (
-                <div className="w-full h-48 bg-gray-200 flex items-center justify-center text-gray-400">
-                  Sem capa
-                </div>
-              )}
+      {/* Container center - Flex para centralizar os cards */}
+      <div className="flex flex-col md:flex-row justify-center items-center md:items-stretch gap-8 mx-auto w-full max-w-4xl px-6">
+        {/* MENU ESQUERDO/CIMA - English Club */}
+        <Link
+          to="/english-club"
+          className="group flex flex-col w-full max-w-sm bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-2 hover:border-sky-300 cursor-pointer transition-all duration-300"
+        >
+          {/* Imagem com altura fixa para não dominar a tela */}
+          <div className="w-full h-56 md:h-64 overflow-hidden">
+            <img
+              src={englishClub}
+              alt="English Club"
+              className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+            />
+          </div>
+          <div className="p-6 flex flex-col flex-grow items-center">
+            <h2 className="text-2xl text-center font-bold uppercase mb-3 text-gray-800">
+              English Club
+            </h2>
+            <p className="text-center text-gray-600 leading-relaxed">
+              Something new to explore: Expressions and everyday English,
+              Videos, music and podcasts, English Hacks, etc.
+            </p>
+          </div>
+        </Link>
 
-              {/* Conteúdo do Card */}
-              <div className="p-6 flex flex-col flex-grow">
-                <h2 className="text-xl font-bold text-gray-800 mb-2">
-                  {aula.titulo}
-                </h2>
-
-                <div className="mt-auto pt-4">
-                  {/* Botão do PDF */}
-                  {aula.pdfUrl ? (
-                    <a
-                      href={aula.pdfUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-block w-full text-center bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded transition-colors"
-                    >
-                      📄 Acessar Material (PDF)
-                    </a>
-                  ) : (
-                    <span className="text-sm text-gray-400 block text-center">
-                      Sem material em PDF
-                    </span>
-                  )}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
+        {/* MENU DIREITO/BAIXO - Challenges */}
+        <Link
+          to="/challenges"
+          className="group flex flex-col w-full max-w-sm bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-2 hover:border-sky-300 cursor-pointer transition-all duration-300"
+        >
+          <div className="w-full h-56 md:h-64 overflow-hidden">
+            <img
+              src={challenge}
+              alt="Challenges"
+              className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+            />
+          </div>
+          <div className="p-6 flex flex-col flex-grow items-center">
+            <h2 className="text-2xl text-center font-bold uppercase mb-3 text-gray-800">
+              Challenges
+            </h2>
+            <p className="text-center text-gray-600 leading-relaxed">
+              Quizzes, games and challenges, Monthly Surprise.
+            </p>
+          </div>
+        </Link>
+      </div>
+    </main>
   );
-}
+};
