@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { client } from "../lib/sanity"; // Ajuste o caminho se necessário
+import { client } from "../lib/sanity";
 
-// Importações do Swiper
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, A11y } from "swiper/modules";
 import "swiper/css";
@@ -14,12 +13,11 @@ export function EnglishClub() {
   const [carregando, setCarregando] = useState(true);
 
   useEffect(() => {
-    // Buscando o novo campo "linkMaterial"
     const query = `*[_type == "aula" && categoria == "english-club"] | order(_createdAt desc) {
       _id,
       titulo,
-      "slug": slug.current,
-      "linkMaterial": linkMaterial,
+      descricao,
+      "links": links,
       "capaUrl": capa.asset->url
     }`;
 
@@ -75,27 +73,19 @@ export function EnglishClub() {
               breakpoints={{
                 768: { slidesPerView: 2 },
                 1024: { slidesPerView: 3 },
-                1280: { slidesPerView: 4 },
               }}
               className="pb-12"
             >
               {aulas.map((aula) => (
                 <SwiperSlide key={aula._id}>
-                  {/* O Card Inteiro agora é um link (tag <a>) */}
-                  <a
-                    href={aula.linkMaterial || "#"}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="block h-full bg-white rounded-xl shadow-sm overflow-hidden flex flex-col border border-gray-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group"
-                  >
+                  {/* O Card agora é uma div normal */}
+                  <div className="h-full bg-white rounded-xl shadow-sm overflow-hidden flex flex-col border border-gray-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
                     {aula.capaUrl ? (
-                      <div className="overflow-hidden">
-                        <img
-                          src={aula.capaUrl}
-                          alt={aula.titulo}
-                          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
-                      </div>
+                      <img
+                        src={aula.capaUrl}
+                        alt={aula.titulo}
+                        className="w-full h-48 object-cover"
+                      />
                     ) : (
                       <div className="w-full h-48 bg-gray-200 flex items-center justify-center text-gray-400">
                         Sem capa
@@ -103,11 +93,32 @@ export function EnglishClub() {
                     )}
 
                     <div className="p-5 flex flex-col flex-grow">
-                      <h2 className="text-xl font-bold text-gray-800 group-hover:text-sky-600 transition-colors">
+                      <h2 className="text-xl font-bold text-gray-800 mb-2">
                         {aula.titulo}
                       </h2>
+                      {aula.descricao && (
+                        <p className="text-gray-600 text-sm mb-4">
+                          {aula.descricao}
+                        </p>
+                      )}
+
+                      {/* Botões de Links */}
+                      <div className="mt-auto flex flex-col gap-2">
+                        {aula.links &&
+                          aula.links.map((link, index) => (
+                            <a
+                              key={index}
+                              href={link.url}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="w-full text-center bg-sky-600 hover:bg-sky-700 text-white font-semibold py-2 px-4 rounded transition-colors text-sm"
+                            >
+                              {link.titulo}
+                            </a>
+                          ))}
+                      </div>
                     </div>
-                  </a>
+                  </div>
                 </SwiperSlide>
               ))}
             </Swiper>
