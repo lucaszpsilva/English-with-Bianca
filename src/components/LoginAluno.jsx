@@ -6,7 +6,7 @@ export function LoginAluno() {
   const [erro, setErro] = useState("");
   const navigate = useNavigate();
 
-  const SENHA_CORRETA = "soualuno2026";
+  const SENHA_CORRETA = "student123";
 
   const handleLogin = (e) => {
     e.preventDefault();

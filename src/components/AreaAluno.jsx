@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import challenge from "../../public/challenge.png";
-import englishClub from "../../public/EnglishClub.png";
+import challenge from "../../public/challenges.jpg";
+import englishClub from "../../public/english-club.jpg";
 
 export const AreaAluno = () => {
   return (
