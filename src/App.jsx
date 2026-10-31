@@ -5,32 +5,56 @@ import { LoginAluno } from "./components/LoginAluno";
 import { AreaAluno } from "./components/AreaAluno";
 import { Challenges } from "./components/Challenges";
 import { EnglishClub } from "./components/EnglishClub";
+import { AuthProvider } from "./components/AuthContext";
+import { RotaProtegida } from "./RotaProtegida";
 
 export const App = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        {/* Rota principal: Site em Português */}
-        <Route path="/" element={<SitePortugues />} />
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          {/* Rotas Publicas */}
+          {/* Rota principal: Site em Português */}
+          <Route path="/" element={<SitePortugues />} />
 
-        {/* Rota do site em Inglês */}
-        <Route path="/en" element={<SiteIngles />} />
+          {/* Rota do site em Inglês */}
+          <Route path="/en" element={<SiteIngles />} />
 
-        {/* Rota login aluno */}
-        <Route path="/login" element={<LoginAluno />} />
+          {/* Rota login aluno */}
+          <Route path="/login" element={<LoginAluno />} />
 
-        {/* Rota Area do aluno */}
-        <Route path="/area-do-aluno" element={<AreaAluno />} />
+          <Route path="*" element={<Navigate to="/" />} />
 
-        {/* Rota Area do English Club */}
-        <Route path="/english-club" element={<EnglishClub />} />
-
-        {/* Rota Area Challenges */}
-        <Route path="/challenges" element={<Challenges />} />
-
-        {/* Se digitar qualquer coisa errada, volta pro início */}
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
-    </BrowserRouter>
+          {/* Rotas Privadas */}
+          {/* Rota area do aluno */}
+          <Route
+            path="/area-do-aluno"
+            element={
+              <RotaProtegida>
+                <AreaAluno />
+              </RotaProtegida>
+            }
+          />
+          {/* Rota Challenges */}
+          <Route
+            path="/challenges"
+            element={
+              <RotaProtegida>
+                <Challenges />
+              </RotaProtegida>
+            }
+          />
+          {/* Rota English Club */}
+          <Route
+            path="/english-club"
+            element={
+              <RotaProtegida>
+                <EnglishClub />
+              </RotaProtegida>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 };

@@ -1,23 +1,22 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "./AuthContext";
 
 export function LoginAluno() {
-  const [senha, setSenha] = useState("");
   const [erro, setErro] = useState("");
+  const [senha, setSenha] = useState("");
   const navigate = useNavigate();
-
-  const SENHA_CORRETA = "student123";
+  const { login } = useAuth();
 
   const handleLogin = (e) => {
     e.preventDefault();
+    const sucesso = login(senha); // Chama a função do contexto
 
-    if (senha === SENHA_CORRETA) {
-      // Se acertar a senha, vai para a área do aluno
-      navigate("/area-do-aluno");
+    if (sucesso) {
+      navigate("/area-do-aluno"); // Redireciona SOMENTE se acertou a senha
     } else {
-      // Se errar, mostra a mensagem de erro
-      setErro("Senha incorreta. Tente novamente.");
-      setSenha(""); // Limpa o campo
+      setErro("Senha incorreta, digite novamente.");
+      setSenha("");
     }
   };
 
